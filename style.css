@@ -413,6 +413,97 @@ html.js-enabled [data-reveal].is-visible {
   color: #fff;
 }
 
+/* A calm welcome sequence keeps the first impression warm, not busy. */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.hero::before {
+  position: absolute;
+  z-index: -1;
+  inset: -24%;
+  background:
+    radial-gradient(ellipse at 22% 26%, rgba(201, 168, 118, 0.2), transparent 34%),
+    radial-gradient(ellipse at 78% 76%, rgba(255, 255, 255, 0.09), transparent 38%);
+  content: "";
+  animation: welcome-glow 18s ease-in-out infinite alternate;
+}
+
+.hero .wrap {
+  position: relative;
+}
+
+.hero.is-visible .logo,
+.hero.is-visible .tab,
+.hero.is-visible h1,
+.hero.is-visible p,
+.hero.is-visible .cta-row {
+  animation: welcome-enter 0.65s ease both;
+}
+
+.hero.is-visible .logo { animation-delay: 0.04s; }
+.hero.is-visible .tab { animation-delay: 0.12s; }
+.hero.is-visible h1 { animation-delay: 0.2s; }
+.hero.is-visible p { animation-delay: 0.28s; }
+.hero.is-visible .cta-row { animation-delay: 0.36s; }
+
+.logo {
+  transition: scale 0.35s ease, box-shadow 0.35s ease;
+}
+
+.hero.is-visible .logo:hover {
+  scale: 1.04;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.service-card .service-icon {
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-icon,
+.service-card:focus-within .service-icon {
+  transform: translateY(-3px) scale(1.08);
+}
+
+.social-bar a {
+  transition: color 0.2s ease, gap 0.2s ease;
+}
+
+.social-bar a:hover {
+  color: var(--gold-dk);
+  gap: 14px;
+}
+
+.btn:active,
+.service-btn:active,
+.submit-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+@keyframes welcome-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes welcome-glow {
+  from {
+    transform: translate3d(-1%, -1%, 0);
+  }
+
+  to {
+    transform: translate3d(1%, 1%, 0);
+  }
+}
+
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -435,7 +526,24 @@ select:focus-visible {
   .btn,
   .service-btn,
   .submit-btn,
-  .service-card {
+  .service-card,
+  .social-bar a {
     transition: none;
+  }
+
+  .logo {
+    transition: none;
+  }
+
+  .hero::before {
+    animation: none;
+  }
+
+  .hero.is-visible .logo,
+  .hero.is-visible .tab,
+  .hero.is-visible h1,
+  .hero.is-visible p,
+  .hero.is-visible .cta-row {
+    animation: none;
   }
 }
