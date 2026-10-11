@@ -364,3 +364,78 @@ select:focus {
   height: auto;
 }
 /* ...existing code... */
+
+/* Subtle scroll reveals, interaction feedback, and accessible focus states. */
+html.js-enabled [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+html.js-enabled [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.btn,
+.service-btn,
+.submit-btn {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.btn:hover,
+.service-btn:hover,
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(8, 44, 85, 0.16);
+}
+
+.service-card {
+  border: 1px solid transparent;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.service-card:hover {
+  border-color: var(--line);
+  box-shadow: 0 14px 30px rgba(8, 44, 85, 0.1);
+}
+
+.service-btn {
+  text-align: center;
+}
+
+.contact-content {
+  text-align: center;
+}
+
+.contact-btn {
+  background: var(--primary);
+  color: #fff;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  html.js-enabled [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .btn,
+  .service-btn,
+  .submit-btn,
+  .service-card {
+    transition: none;
+  }
+}
