@@ -316,6 +316,97 @@
   font-size: .8rem;
 }
 
+/* A focused request form keeps lead capture clear and comfortable on mobile. */
+.order-section {
+  background: linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+}
+.order-card {
+  width: 100%;
+  max-width: 700px;
+  padding: clamp(20px, 4vw, 36px);
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+  box-shadow: 0 12px 32px rgba(8, 44, 85, .08);
+}
+.order-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 16px;
+}
+.order-field {
+  min-width: 0;
+}
+.order-field-wide {
+  grid-column: 1 / -1;
+}
+.order-field label {
+  color: var(--primary-dk);
+}
+.order-field label span {
+  color: var(--gold-dk);
+  font-size: .78rem;
+}
+.order-field input,
+.order-field select,
+.order-field textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  font-size: .92rem;
+}
+.order-field textarea {
+  min-height: 112px;
+  resize: vertical;
+}
+.order-field input[dir="ltr"] {
+  text-align: left;
+}
+.order-field input:focus,
+.order-field select:focus,
+.order-field textarea:focus {
+  outline: 3px solid rgba(201, 168, 118, .45);
+  outline-offset: 1px;
+  border-color: var(--gold-dk);
+}
+.order-submit {
+  width: 100%;
+  min-height: 50px;
+  margin-top: 20px;
+  font: inherit;
+}
+.order-submit:disabled {
+  cursor: wait;
+  opacity: .7;
+}
+.order-privacy {
+  margin: 12px 0 0;
+  color: var(--muted);
+  text-align: center;
+  font-size: .76rem;
+}
+.order-status {
+  margin: 12px 0 0;
+  text-align: center;
+  font-size: .88rem;
+  font-weight: 700;
+}
+.order-status:empty {
+  display: none;
+}
+.order-status[data-state="success"] {
+  color: #17613a;
+}
+.order-status[data-state="error"] {
+  color: #a32626;
+}
+
 /* Contact and footer continue the existing navy-and-gold identity. */
 .closing-cta {
   padding-block: 46px;
@@ -414,5 +505,14 @@
   }
   .brand-by {
     font-size: .68rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .order-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .order-field-wide {
+    grid-column: auto;
   }
 }
